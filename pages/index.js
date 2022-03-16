@@ -1,7 +1,7 @@
 import Container from "../components/container";
 import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
+import Menu from "../components/menu";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/api";
 import Head from "next/head";
@@ -15,8 +15,8 @@ export default function Index({ allPosts }) {
         <Head>
           <title>Home of the Use Case Podcast with Austin and Clinton</title>
         </Head>
+        <Menu />
         <Container>
-          <Intro />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -43,8 +43,6 @@ export async function getStaticProps() {
     "coverImage",
     "excerpt",
   ]);
-
-  console.log(allPosts);
 
   return {
     props: { allPosts },
