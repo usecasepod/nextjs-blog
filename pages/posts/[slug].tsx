@@ -8,16 +8,25 @@ import Layout from "../../components/layout";
 import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
-import { CMS_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
 
-export default function Post({ post, morePosts, preview }) {
+interface PostPageProps {
+  post: {
+    slug: string;
+    title: string;
+    date: string;
+    author: string;
+    content: string;
+  };
+}
+
+export default function Post({ post }: PostPageProps) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Container>
         <Header />
         {router.isFallback ? (
@@ -30,7 +39,6 @@ export default function Post({ post, morePosts, preview }) {
               </Head>
               <PostHeader
                 title={post.title}
-                coverImage={post.coverImage}
                 date={post.date}
                 author={post.author}
               />
@@ -45,13 +53,11 @@ export default function Post({ post, morePosts, preview }) {
 
 export async function getStaticProps({ params }) {
   const post = await getPostBySlug(params.slug, [
-    "title",
     "date",
     "slug",
-    "author",
     "content",
-    "ogImage",
-    "coverImage",
+    "author",
+    "title",
   ]);
   const content = await markdownToHtml(post.content || "");
 
@@ -67,8 +73,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const posts = await getAllPosts(["slug"]);
-  var slugs = posts.map((post) => post.slug);
-  console.log(slugs);
 
   return {
     paths: posts.map((post) => {
