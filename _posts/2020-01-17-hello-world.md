@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Hello World!"
-categories: Posts
+categories:
+  - Posts
 author: Austin Webre
 ---
 

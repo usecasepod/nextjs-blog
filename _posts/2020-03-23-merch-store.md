@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "COVID-19, Merch, and the Future of Use Case"
-categories: Posts
+categories:
+  - Posts
 author: Austin Webre
 ---
 

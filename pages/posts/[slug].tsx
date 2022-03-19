@@ -9,6 +9,7 @@ import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
 import markdownToHtml from "../../lib/markdownToHtml";
+import { PostCategory } from "../../lib/types";
 
 interface PostPageProps {
   post: {
@@ -17,6 +18,7 @@ interface PostPageProps {
     date: string;
     author: string;
     content: string;
+    categories: PostCategory[];
   };
 }
 
@@ -28,7 +30,7 @@ export default function Post({ post }: PostPageProps) {
   return (
     <Layout>
       <Container>
-        <Header />
+        <Header categories={post.categories} />
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
@@ -58,6 +60,7 @@ export async function getStaticProps({ params }) {
     "content",
     "author",
     "title",
+    "categories",
   ]);
   const content = await markdownToHtml(post.content || "");
 

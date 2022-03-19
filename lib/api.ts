@@ -2,6 +2,7 @@ import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 import markdownToHtml from "./markdownToHtml";
+import { PostCategory } from "./types";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -9,27 +10,28 @@ export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);
 }
 
-export interface RawBlogPostData {
+export interface PostData {
   slug: string;
   content: string;
   excerpt: string;
   date: string;
   author: string;
   title: string;
+  categories: PostCategory[];
 }
 
-export type BlogPostFields = keyof RawBlogPostData;
+export type BlogPostFields = keyof PostData;
 
 export async function getPostBySlug<TFields extends BlogPostFields>(
   slug: string,
   fields: TFields[]
-): Promise<{ [key in TFields]: RawBlogPostData[key] }> {
+): Promise<{ [key in TFields]: PostData[key] }> {
   const realSlug = slug.replace(/\.md$/, "");
   const fullPath = join(postsDirectory, `${realSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const post = data as RawBlogPostData;
+  const post = data as PostData;
   if (post === null) {
     throw new Error("Post not found");
   }
@@ -55,7 +57,7 @@ export async function getPostBySlug<TFields extends BlogPostFields>(
         return [field, excerpt];
       }
 
-      return [field, data[field] ?? ""];
+      return [field, post[field]];
     })
   );
 

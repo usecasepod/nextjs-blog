@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Mobile Updates to the Blog!"
-categories: Posts
+categories:
+  - Posts
 author: Austin Webre
 ---
 
@@ -22,8 +23,6 @@ Now most podcast distributors have their own embedded player. Anchor (our distri
 Now, the documentation was lacking some (as so much open source documentation is), but after dabbling with the settings for a little while, I had all the information we wanted in a test player on one of the episode pages. From there, it was a matter of pulling out the epsisode specific settings (episode titles, duration, etc) into Jekyll's per page yaml settings, called "front matter" for reasons unknown to me.
 
 Since PodLove's Web Player takes a json object for its configuration and liquid variables can be used within javascript, I came up with the following `<script>` in the post template:
-
-{% raw %}
 
 ```html
 <script>
@@ -61,8 +60,6 @@ Since PodLove's Web Player takes a json object for its configuration and liquid 
   });
 </script>
 ```
-
-{% endraw %}
 
 Using these variables, now all thats required for each player to work is the following "front matter":
 

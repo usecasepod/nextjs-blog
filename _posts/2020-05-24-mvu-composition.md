@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Exploring MVU Part 2: Composition"
-categories: Posts
+categories:
+  - Posts
 author: Austin Webre
 ---
 

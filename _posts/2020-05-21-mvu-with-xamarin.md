@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Exploring MVU and Functional Paradigms in Xamarin.Forms"
-categories: Posts
+categories:
+  - Posts
 author: Austin Webre
 ---
 
