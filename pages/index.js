@@ -28,6 +28,7 @@ export async function getStaticProps() {
     "slug",
     "author",
     "excerpt",
+    "categories",
   ]);
 
   return {
