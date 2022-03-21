@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ep #12: Design Patterns for Patternless Languages"
-categories: Episodes
+categories:
+  - Episodes
 author: Austin Webre & Clinton Walker
 player_config:
   id: 12

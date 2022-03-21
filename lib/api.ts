@@ -26,8 +26,13 @@ export async function getPostBySlug<TFields extends BlogPostFields>(
   slug: string,
   fields: TFields[]
 ): Promise<{ [key in TFields]: PostData[key] }> {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const slugFileLookup = fs
+    .readdirSync(postsDirectory)
+    .map((f) => ({ fileName: f, slug: getCleanSlug(f) }));
+
+  const realSlug = getCleanSlug(slug);
+  const fileName = slugFileLookup.find((f) => f.slug === realSlug)?.fileName;
+  const fullPath = join(postsDirectory, fileName);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
@@ -76,4 +81,8 @@ export async function getAllPosts<TFields extends BlogPostFields>(
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
+}
+
+function getCleanSlug(slug: string) {
+  return slug.replace(/\.md$/, "").replace("#", "");
 }

@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ep #9: Shillin' and Chillin'"
-categories: Episodes
+categories:
+  - Episodes
 author: Austin Webre & Clinton Walker
 player_config:
   id: 9

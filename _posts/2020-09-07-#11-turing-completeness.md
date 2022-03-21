@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ep #11: Turing Completeness"
-categories: Episodes
+categories:
+  - Episodes
 author: Austin Webre & Clinton Walker
 player_config:
   id: 11

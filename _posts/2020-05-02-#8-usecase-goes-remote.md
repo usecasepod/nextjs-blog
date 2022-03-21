@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ep #8: Use Case Goes Remote"
-categories: Episodes
+categories:
+  - Episodes
 author: Austin Webre & Clinton Walker
 player_config:
   id: 8

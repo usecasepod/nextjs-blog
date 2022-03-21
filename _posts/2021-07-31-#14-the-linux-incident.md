@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Ep #14: The Linux Incident"
-categories: Episodes
+categories:
+  - Episodes
 author: Austin Webre & Clinton Walker
 player_config:
   id: 14

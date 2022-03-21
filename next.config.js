@@ -6,4 +6,13 @@ const debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
   assetPrefix: !debug ? "/nextjs-blog/" : "",
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: !debug ? "/nextjs-blog" : "/",
+        permanent: true,
+      },
+    ];
+  },
 };
