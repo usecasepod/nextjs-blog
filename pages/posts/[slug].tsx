@@ -10,6 +10,7 @@ import PostTitle from "../../components/post-title";
 import Head from "next/head";
 import markdownToHtml from "../../lib/markdownToHtml";
 import { PostCategory } from "../../lib/types";
+import Menu from "../../components/menu";
 
 interface PostPageProps {
   post: {
@@ -29,6 +30,7 @@ export default function Post({ post }: PostPageProps) {
   }
   return (
     <Layout>
+      <Menu />
       <Container>
         <Header categories={post.categories} />
         {router.isFallback ? (
@@ -76,7 +78,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const posts = await getAllPosts(["slug"]);
-  console.log(posts);
 
   return {
     paths: posts.map((post) => {

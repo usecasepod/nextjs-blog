@@ -13,10 +13,10 @@ export default function PostPreview({ title, date, excerpt, author, slug }) {
       <div className="text-lg mb-4">
         <DateFormatter dateString={date} />
       </div>
-      <p
+      <div
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
-      ></p>
+      ></div>
       <Avatar name={author} />
     </div>
   );

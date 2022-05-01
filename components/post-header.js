@@ -10,7 +10,7 @@ export default function PostHeader({ title, date, author }) {
       <div className="hidden md:block md:mb-12">
         <Avatar name={author} />
       </div>
-      <div className="max-w-2xl mx-auto">
+      <div>
         <div className="block md:hidden mb-6">
           <Avatar name={author} />
         </div>
